@@ -1,0 +1,44 @@
+! SonicWall NSA2400 - Sanitized Export Summary
+! Date: 2025-05-14
+! NOTE: This file omits all secrets, keys, and sensitive identifiers.
+
+[General Settings]
+Hostname: SONICWALL-LAB
+Timezone: America/Chicago
+UI Management: HTTPS, Ping enabled
+Admin Zone Access: LAN, MGMT
+
+[Interfaces]
+X0: LAN - Static IP 192.168.1.254 /24 (Connected to Cisco 2901 Gi0/0)
+X1: WAN - DHCP (Connected to ISP Router LAN Port)
+X2: MGMT - Static IP 192.168.100.1 /24 (Connected to VLAN 100 on Switch Fa0/21)
+
+[Routing]
+Default Gateway: Received from ISP via X1 (DHCP)
+Static Route: 
+  - Destination: 192.168.100.0 /24
+    Gateway: 192.168.1.1 (via X0)
+    Interface: X0
+
+[Firewall Rules Summary]
+LAN → LAN: Allow ICMP/HTTPS from VLAN 100 to X0 IP
+LAN → WAN: Allow all outbound
+WAN → LAN: Block all by default
+
+[DHCP Server]
+Status: Disabled (handled by Cisco 2901)
+
+[VPN & Certificates]
+Status: Redacted from this export
+
+[System Logs & Alerts]
+Syslog: Not configured
+Email Alerts: Not configured
+
+[Licensing]
+Serial: Redacted
+Registration: Activated
+
+[Notes]
+- Configuration exported manually as part of homelab documentation
+- Passwords, certificates, and private keys are intentionally excluded
