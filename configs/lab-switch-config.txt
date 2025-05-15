@@ -1,0 +1,55 @@
+! LAB-SWITCH Configuration
+! Date: 2025-05-14
+! NOTE: This configuration is sanitized and does not include passwords or secrets.
+
+hostname LAB-SWITCH
+
+vlan 10
+ name USERS
+vlan 20
+ name WIFI
+vlan 30
+ name SERVERS
+vlan 99
+ name BLACKHOLE
+vlan 100
+ name MGMT
+
+interface Vlan100
+ ip address 192.168.100.20 255.255.255.0
+ no shutdown
+
+ip default-gateway 192.168.100.250
+
+interface GigabitEthernet0/1
+ description Trunk to LAB-ROUTER
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,20,30,100
+ no shutdown
+
+interface FastEthernet0/22
+ description Trunk to Proxmox
+ switchport mode trunk
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 10,20,30,100
+ no shutdown
+
+interface FastEthernet0/24
+ description Admin Workstation (MGMT)
+ switchport mode access
+ switchport access vlan 100
+ no shutdown
+
+interface FastEthernet0/21
+ description SonicWall X2 MGMT
+ switchport mode access
+ switchport access vlan 100
+ no shutdown
+
+interface range FastEthernet0/1 - 20
+ switchport mode access
+ switchport access vlan 99
+ shutdown
+
+end
