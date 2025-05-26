@@ -1,0 +1,12 @@
+### 🛠 RAID Disk Recovery
+• Disk in Slot 5 showed Failed
+• Reseated → status = Ready
+• Used Ctrl+R → Force Online → Rebuild triggered
+• RAID 5 VD status = Rebuilding
+
+### 💾 RAID Reconfiguration (May 2025)
+• 2x 136 GB → RAID 1 (Proxmox OS)
+• 6x 837 GB → RAID 10 (VM Storage)
+• Cleared foreign configs + old VDs
+• Labeled arrays: OS_RAID1, VM_RAID10
+• Verified all disks initialized + online
